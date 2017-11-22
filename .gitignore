@@ -1,0 +1,11 @@
+# Build
+build/
+
+# Dependencies
+node_modules/
+
+# Text Editor (VS Code)
+.vscode/
+
+#
+.DS_Store
