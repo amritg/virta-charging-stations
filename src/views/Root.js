@@ -24,16 +24,20 @@ class Root extends React.Component {
   render() {
     return (
       <div style={{width: '100%', height: '100%', position: 'absolute', top:0, left: 0}}>
-        <Map
-          defaultCenter={this.state.center}
-          defaultZoom={this.state.zoom}
-          stations={this.props.stations}
-          hoverKey={this.props.hoverKey}
-          onHoverKeyChange={this.props.hoverKeyChange}
-          fetchStationInformation={this.props.fetchStationInformation}
-          hoverOverStationInformation={this.props.hoverOverStationInformation}
-          hoverOverStationInformationState={this.props.hoverOverStationInformationState}
-        />
+        {
+          this.props.stationsState === 'PROGRESS'
+            ? <div style={{width: '100%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '30px'}}><p>Loading ... :)</p></div>
+            :  <Map
+              defaultCenter={this.state.center}
+              defaultZoom={this.state.zoom}
+              stations={this.props.stations}
+              hoverKey={this.props.hoverKey}
+              onHoverKeyChange={this.props.hoverKeyChange}
+              fetchStationInformation={this.props.fetchStationInformation}
+              hoverOverStationInformation={this.props.hoverOverStationInformation}
+              hoverOverStationInformationState={this.props.hoverOverStationInformationState}
+            />
+        }
       </div>
     )
   }
@@ -42,6 +46,7 @@ class Root extends React.Component {
 const mapStateToProps = state => {
   return {
     stations: state.mapReducer.stations,
+    stationsState: state.mapReducer.stationsState,
     hoverOverStationInformation: state.mapReducer.hoverOverStationInformation,
     hoverOverStationInformationState: state.mapReducer.hoverOverStationInformationState,
     hoverKey: state.mapReducer.hoverKey
