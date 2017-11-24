@@ -26,6 +26,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "google-map-react": "^0.25.0",
     "html-hint": "^0.2.4",
     "isomorphic-fetch": "^2.2.1",

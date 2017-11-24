@@ -24,14 +24,17 @@ export default class Map extends React.Component {
     const mapMarkers = props.stations
       .map((station) => {
         const isStationFree = station.evses.filter(evse => evse.status === 1).length > 0 ? true : false
+        const isStationBusy = station.evses.filter(evse => evse.status === 2).length > 0 ? true : false
+        const isStationDisconnected = station.evses.filter(evse => evse.status === 0).length > 0 ? true : false
         return (
           <MapMarkers 
             key={station.id}
             stationId={station.id}
             lat={station.lat}
-            lng={station.lon} 
-            text={isStationFree ? 'Y' : 'N'}
+            lng={station.lon}
             isStationFree={isStationFree}
+            isStationBusy={isStationBusy}
+            isStationDisconnected={isStationDisconnected}
             hover={props.hoverKey === station.id}
             hoverOverStationInformation={props.hoverOverStationInformation}
             hoverOverStationInformationState={props.hoverOverStationInformationState}

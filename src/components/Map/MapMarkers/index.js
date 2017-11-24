@@ -1,52 +1,9 @@
 import React from 'react'
 import 'html-hint/dist/html-hint.css'
 import _ from 'lodash'
+const classNames = require('classnames')
 
-const K_WIDTH = 18
-const K_HEIGHT = 18
-
-const stationFreeStyle = {
-  position: 'absolute',
-  width: K_WIDTH,
-  height: K_HEIGHT,
-  left: -K_WIDTH / 2,
-  top: -K_HEIGHT / 2,
-  border: '2px solid green',
-  borderRadius: '50%',
-  backgroundColor: 'white',
-  textAlign: 'center',
-  fontSize: 10,
-  color: '#3f51b5',
-}
-
-const stationOccupiedStyle = {
-  position: 'absolute',
-  width: K_WIDTH,
-  height: K_HEIGHT,
-  left: -K_WIDTH / 2,
-  top: -K_HEIGHT / 2,
-  borderRadius: '50%',
-  backgroundColor: 'white',
-  textAlign: 'center',
-  fontSize: 10,
-  border: '2px solid red',
-  color: '#f44336'
-}
-
-const hoverStyle = {
-  position: 'absolute',
-  width: K_WIDTH,
-  height: K_HEIGHT,
-  left: -K_WIDTH / 2,
-  top: -K_HEIGHT / 2,
-  borderRadius: '50%',
-  backgroundColor: 'white',
-  textAlign: 'center',
-  fontSize: 10,
-  color: 'blue',
-  border: '2px solid blue'
-}
-
+import './styles.css'
 export default class MapMarkers extends React.Component {
   constructor(props) {
     super(props)
@@ -54,11 +11,19 @@ export default class MapMarkers extends React.Component {
 
   render() {
     const { props } = this
-    const style = this.props.isStationFree ? stationFreeStyle : stationOccupiedStyle
 
     return (
-      <div className="hint hint--html hint--info hint--top" style={this.props.hover ? hoverStyle : style}>
-        <span>{this.props.text}</span>
+      <div className={classNames(
+        'hint hint--html hint--info hint--top',
+        {
+          'free': props.isStationFree,
+          'busy' : props.isStationBusy,
+          'disconnected': props.isStationDisconnected
+        })}
+      >
+        {this.props.isStationFree && (<span>F</span>)}
+        {this.props.isStationBusy && (<span>B</span>)}
+        {this.props.isStationDisconnected && (<span>O</span>)}
         <div style={{width: 220}} className="hint__content">
           {
             props.hoverOverStationInformationState === 'PROGRESS'
