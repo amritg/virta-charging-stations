@@ -17,10 +17,8 @@ const store = createStore(
 const MainContainer = () => {
   return (
     <Provider store={store}>
-      <Router historty={browserHistory}>
-        <div>          
-          <Route exact path='/' component={Root}/>
-        </div>
+      <Router historty={browserHistory}>       
+        <Route exact path='/' component={Root}/>
       </Router>
     </Provider>
   )
@@ -28,7 +26,9 @@ const MainContainer = () => {
 
 const App = () => {
   return (
-    <MainContainer />
+    <div>
+      <MainContainer />
+    </div>
   )
 }
 

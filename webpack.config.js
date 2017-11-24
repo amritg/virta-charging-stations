@@ -5,19 +5,9 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.css$/, exclude: '/node_modules' , use: ['style-loader','css-loader']},
+      {test: /\.css$/, exclude: '/node_modules' , use: ['style-loader','css-loader','sass-loader']},
       {test: /\.js$/, exclude: '/node_modules', use: 'babel-loader'},
       {test: /\.js$/, exclude: '/node_modules', use: 'eslint-loader'}
     ]
-  },
-  devServer: {
-    historyApiFallback: true,
-    proxy: {
-      '/apitmdb': {
-        target: 'https://api.themoviedb.org',
-        pathRewrite: {'^/apitmdb/' : ''},
-        secure: false
-      }
-    }
   }
 }
