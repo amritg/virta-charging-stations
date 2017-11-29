@@ -3,7 +3,7 @@ import 'html-hint/dist/html-hint.css'
 import _ from 'lodash'
 const classNames = require('classnames')
 
-import './styles.css'
+import './styles.scss'
 export default class MapMarkers extends React.Component {
   constructor(props) {
     super(props)
@@ -15,6 +15,7 @@ export default class MapMarkers extends React.Component {
     return (
       <div className={classNames(
         'hint hint--html hint--info hint--top',
+        'map-marker',
         {
           'free': props.isStationFree,
           'busy' : props.isStationBusy,
